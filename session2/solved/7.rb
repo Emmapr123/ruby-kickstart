@@ -1,3 +1,5 @@
+sentence = "Can't we all get along?"
+
 def alternate_words(sentence)
   # this will get better when we learn regular expressions :)
   '!@$#%^&*()-=_+[]:;,./<>?\\|'.split(//).each do |char|
@@ -10,3 +12,5 @@ def alternate_words(sentence)
   end
   solution
 end
+
+alternate_words(sentence)

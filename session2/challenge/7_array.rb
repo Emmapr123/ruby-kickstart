@@ -9,13 +9,8 @@
 # alternate_words("Can't we all get along?")      # => ["Can't", "all", "along"]
 # alternate_words("Elementary, my dear Watson!")  # => ["Elementary", "dear"]
 
-string = "Can't we all get along?"
-
 def alternate_words(string)
-  print string.split(/\s|(\W)|'[^']'/)
-  string.split(/\s|('[^']')|(\W)/).map.with_index { |word, index|
+  string.gsub(/[!@$#%^&*()-=_+\[\]:;,.\/\<\>\?\\\|]/, " ").split(" ").map.with_index { |word, index|
     index % 2 == 0 ? word : nil
   }.compact
 end
-
-print alternate_words(string)
