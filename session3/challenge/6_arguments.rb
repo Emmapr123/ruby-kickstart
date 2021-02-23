@@ -17,3 +17,18 @@
 # match_maker true,  true,  true, true, nil     # => [false, true]
 # match_maker true,  true,  true, 0, nil        # => [false, true]
 
+
+def match_maker(value, *elements)
+  answer = []
+  elements.each_slice(2) { |one, two|
+    one = !!one
+    two = !!two
+    result = if value
+      one != two
+    else
+      one == two
+    end
+  answer << result
+  }
+  answer
+end

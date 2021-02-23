@@ -16,7 +16,7 @@
 #
 
 class Person
-  attr_accessor 'name', 'age'
+  attr_accessor :name, :age, :birthday
 
   def initialize(name, age)
     @name = name
@@ -26,4 +26,5 @@ class Person
   def birthday
     @age += 1
   end
+
 end

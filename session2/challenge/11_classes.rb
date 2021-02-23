@@ -23,41 +23,30 @@ class BeerSong
   attr_accessor :beers
 
   def initialize(beers)
-     beers = 0 if beers < 0
-     beers = 99 if beers > 99
-     self.beers = beers
+    return beers = 0 if beers < 0
+    return beers = 99 if beers > 99
+    self.beers = beers
   end
 
-  def print_song
-    beers.downto 1 do |i|
-      print_st i
-    end
-  end
-
-  def print_st(beers)
-    if beers.zero?
-      String.new
-    else
-    puts  "#{translate(beers)} #{bottle beers} of beer on the wall," ,
-          "#{translate(beers)} #{bottle beers} of beer,"             ,
-          "Take one down, pass it around,"                           ,
-          "#{translate beers - 1} #{bottle beers - 1} of beer on the wall."
-  end
-  end
-
-  def bottle(beers)
-    return "bottle" if beers == 1
-    return "bottles" if beers != 1
-  end
-
-  def translate(beers)
-    if beers <= 19
+  def to_words(beers)
+    if beers < 19
       %w{ zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen}[beers]
-    elsif beers % 10 == 0
+    if beers % 10 == 0
       %w{ zero ten twenty thirty forty fifty sixty seventy eighty ninety}[beers/10]
     else
-      "#{translate beers/10*10}-#{translate beers%10}".downcase
+      "#{to_words beers/10}-#{to_words beers}"
     end.capitalize
+  end
+
+  def bottle_s(beers)
+    beers == 1 ? "bottle" : "bottles"
+  end
+
+  def print_song(beers)
+    puts  "#{to_words beers} #{bottle_s beers} of beer on the wall,",
+          "#{to_words beers} #{bottle_s beers} of beer,",
+          "take on down, pass it around,",
+          "#{to_words beers - 1} #{bottle_s beers - 1} of beer on the wall."
   end
 
 end
