@@ -29,4 +29,11 @@
 # shared [1,2,3], [3,2,1]            # => [{1=>[true, true], 2=>[true, true], 3=>[true, true]}, [1, 2, 3]]
 
 def shared(a, b)
+  array = []
+  hash = {}
+  all_elements = a + b
+  all_elements.uniq.map { |keys| hash[keys] = [a.include?(keys) ? true : nil, b.include?(keys) ? true : nil] }
+  array << hash
+  array << (a & b)
+  array
 end

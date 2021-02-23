@@ -28,6 +28,15 @@
 #
 # create it from scratch :)
 
-
-def pathify
+def pathify(hash_file=Hash.new)
+  return hash_file.map { |array| '/' + array } if hash_file.is_a? Array
+  answer = []
+  hash_file.each do |key, value|
+    key = '/' + key
+    new_value = pathify value
+    new_value.each do |value|
+      answer << (key + value)
+    end
+  end
+  answer
 end
