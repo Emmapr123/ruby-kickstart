@@ -21,11 +21,32 @@
 # problem_14 2,   5, 6, 45, 99, 13, 5, 6,  :problem => :same_ends    # => true
 # problem_14 3,   5, 6, 45, 99, 13, 5, 6,  :problem => :same_ends    # => false
 
-def problem_14
+def problem_14(*parameters)
+  # recieves a hash containing a problem to solve, if no problem is given default to :count_clumps
+  problem = parameters.pop[:problem] if parameters.last.is_a? Hash
+  problem ||= :count_clumps
+
+  return count_clumps(*parameters)   if problem == :count_clumps
+  return same_ends(*parameters)      if problem == :same_ends
+  return
 end
 
-def same_ends
+def same_ends(n, *parameters)
+  # given an array, the first number decides the length of the expected numbers to be the same on both ends of the array
+  parameters[0, n] == parameters[-n, n]
 end
 
-def count_clumps
+def count_clumps(*array)
+  #return the number of clumbs in an array
+  number_of_clumps  = 0
+  par_before        = nil
+  two_before        = nil
+
+  array.each do |num|
+      number_of_clumps += 1 if (par_before == num) && (par_before != two_before)
+      two_before = par_before
+      par_before = num
+    end
+
+  number_of_clumps
 end
