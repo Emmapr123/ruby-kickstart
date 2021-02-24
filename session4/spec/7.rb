@@ -11,7 +11,6 @@ RSpec.describe 'longest_method' do
     Class,
     Class.new,
     Date.today,
-    Pathname.new('.'),
     Time.now,
     Object.new.instance_eval { def this_is_a_really_really_really_really_really_long_method_name; end; self },
   ].each do |object|
