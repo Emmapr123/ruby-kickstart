@@ -82,7 +82,47 @@
 #   * First think about where you need to put this method so that it will be available to all the controllers
 #   * You are going to need to combine variable length parameters with an options hash. This can't be done in the method signature
 
+  class ApplicationController
+
+    def self.css_classes(*body_class)
+      option = body_class.pop if body_class.last.is_a? Hash
+
+      option ||= Hash.new
+
+      before_filter(option) { |controller|
+        body_class.each { |css_body_class|
+          controller.body_class <<  css_body_class
+          }
+        }
+    end
 
 
+  end
 
-
+  # class ApplicationController
+  #   def body_class
+  #     return @body_class if @body_class
+  #     @body_class = String.new
+  #
+  #     class <<  @body_class
+  #       def <<(str)
+  #         return self if self[/\b#{str}\b/]
+  #         concat " " unless length.zero?
+  #         concat str
+  #       end
+  #
+  #       def +(str)    raise_exception end
+  #       def *(str)    raise_exception end
+  #       def []=(o,n)  raise_exception end
+  #
+  #       private
+  #
+  #       def raise_exception
+  #         raise RuntimeError.new ("use << method instead")
+  #       end
+  #
+  #     end
+  #
+  #     @body_class
+  #   end
+  # end
