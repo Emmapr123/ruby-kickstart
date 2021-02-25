@@ -18,7 +18,7 @@
 # stack.push 2
 # stack # => [1, 2]
 
-require_relative './1_stack_classes_inspect.rb'
+require_relative './1_stack_classes_inspect'
 
 class StackInDisguise < Stack
 
