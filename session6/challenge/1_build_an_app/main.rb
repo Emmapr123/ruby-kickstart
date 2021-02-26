@@ -32,9 +32,13 @@ get '/' do
 end
 
 post '/encrypt' do
-  "#{message.encrypt}"
+  @decrypted = params[:decrypted]
+  @encrypted = CaesarCipher.encrypt @decrypted
+  erb :encrypt
 end
 
 post '/decrypt' do
-  "#{message.decrypt}"
+  @encrypted = params[:encrypted]
+  @decrypted = CaesarCipher.decrypt @encrypted
+  erb :decrypt
 end
