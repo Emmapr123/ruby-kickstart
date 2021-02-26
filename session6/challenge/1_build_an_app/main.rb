@@ -25,7 +25,7 @@
 # presented with the decrypted message.
 
 require 'sinatra'
-require_relative './lib/caesar_cipher.rb'
+require File.dirname(__FILE__)+'/lib/caesar_cipher'
 
 get '/' do
   erb :home
